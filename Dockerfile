@@ -9,7 +9,7 @@ chmod +x lip/lip && \
 mkdir bedrock_server && \
 cd bedrock_server && \
 ../lip/lip install liteloaderbds && \
-WINEDEBUG=-all wine PeEditor.exe && \
+WINEDEBUG=-all wine64 PeEditor.exe && \
 rm ../lip-linux-amd64.tar.gz && \
 rm ~/.wine -r
 COPY entrypoint.sh /
