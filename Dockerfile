@@ -1,6 +1,6 @@
 FROM alpine:edge
 RUN apk add --no-cache wine libc6-compat wget
-ARG lip_version=0.14.2
+ARG lip_version=0.15.2
 WORKDIR /server_prebuilt
 RUN wget https://github.com/LipPkg/Lip/releases/download/v${lip_version}/lip-linux-amd64.tar.gz && \
 mkdir lip && \
