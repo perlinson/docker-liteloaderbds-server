@@ -1,7 +1,7 @@
 FROM alpine:latest
 
 COPY scripts /scripts
-RUN /scripts/build.sh
+RUN ["sh", "/scripts/build.sh"]
 
 WORKDIR /data
 ENTRYPOINT [ "/scripts/entrypoint.sh" ]
