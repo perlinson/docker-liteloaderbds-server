@@ -2,6 +2,7 @@
 
 # Set default values for environment variables
 COREPACK_VERSION="${COREPACK_VERSION:-LATEST}"
+export WINEDEBUG="${WINEDEBUG:--all}"
 EULA="${EULA:-FALSE}"
 
 # Enforce EULA
@@ -22,7 +23,6 @@ if [ -z "$(ls -A)" ]; then
 
     lip install -y github.com/tooth-hub/corepack$COREPACK_VERSION_SUFFIX
 
-    wine64 PeEditor.exe
 fi
 
 wine64 bedrock_server_mod.exe
