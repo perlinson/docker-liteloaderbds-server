@@ -23,6 +23,7 @@ if [ -z "$(ls -A)" ]; then
 
     lip install -y github.com/tooth-hub/corepack$COREPACK_VERSION_SUFFIX
 
+    wine64 PeEditor.exe --pause=false --mod=true
 fi
 
 wine64 bedrock_server_mod.exe
