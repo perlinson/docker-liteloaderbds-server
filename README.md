@@ -7,7 +7,7 @@ Docker image that provides a LiteLoaderBDS server that will automatically downlo
 The following starts a LiteLoaderBDS server running a default version and exposing the default UDP port:
 
 ```sh
-docker run -d -it -e EULA=TRUE -p 19132:19132/udp -v mc-server-data:/data ghcr.io/liteldev/liteloaderbds-server
+docker run -d -it -e EULA=TRUE -p 19132:19132/udp -v liteloaderbds-server-data:/data ghcr.io/liteldev/liteloaderbds-server
 ```
 
 If you plan to use the server in production, it is recommended to use Docker Compose to manage the container. You can use the following `docker-compose.yml` file as a template:
@@ -17,16 +17,19 @@ services:
   mc-server:
     image: ghcr.io/liteldev/liteloaderbds-server
     environment:
-      EULA: "TRUE"
+      EULA: TRUE
+      PACKAGES: |
+        github.com/tooth-hub/llmoney
+      VERSION: LATEST
     ports:
       - 19132:19132/udp
     volumes:
-      - mc-server-data:/data
+      - liteloaderbds-server-data:/data
     stdin_open: true
     tty: true
 
 volumes:
-  mc-server-data:
+  liteloaderbds-server-data:
 ```
 
 ## Usage
@@ -34,4 +37,5 @@ volumes:
 ### Environment variables
 
 - `EULA`(`FALSE`): must be set to `TRUE` to accept the [Minecraft End User License Agreement](https://minecraft.net/terms).
-- `COREPACK_VERSION`(`LATEST`): can be set to a specific [corepack](https://github.com/tooth-hub/corepack/tags) version or `LATEST` to automatically download the latest version.
+- `PACKAGES`(``): can be set to a list of packages to install on first run. Each package must be a valid lip specifier. Both local and remote lip teeth are supported. For local packages, you may need to mount the packages to the container.
+- `VERSION`(`LATEST`): can be set to a specific [LiteLoaderBDS](https://github.com/tooth-hub/liteloaderbds/tags) version or `LATEST` to automatically download the latest version.
